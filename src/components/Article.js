@@ -22,7 +22,6 @@ export default class Article extends Component {
             <div>
                 <h3 onClick = {this.toggleOpen}>{this.props.article.title}</h3>
                 {this.getBody()}
-                {this.getComments()}
             </div>
         )
     }
@@ -45,14 +44,17 @@ export default class Article extends Component {
         return (
             <section>
                 {this.props.article.text}
+                <h3 onClick={this.toggleOpenComments}>Comments</h3>
+                {this.getComments()}
             </section>
         )
     }
 
     getComments() {
       const { article } = this.props
-      if(!article.comments) return null;
-        const comments = article.comments.map( comment => <h4 key = {comment.id}><Comment comment = {comment}/></h4>)
+      if (!this.state.isComments) return null;
+      if (!article.comments) return null;
+        const comments = article.comments.map( comment => <ul key = {comment.id}><Comment comment = {comment}/></ul>)
         return (
             <div>
               {comments}

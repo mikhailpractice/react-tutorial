@@ -6,8 +6,10 @@ export default class Comment extends Component {
         const { comment } = this.props
         return (
             <div>
-                <h3>{comment.user}</h3>
-                <h3>{comment.text}</h3>
+                <li>
+                  {comment.user}
+                  {comment.text}
+                </li>
             </div>
         )
     }
